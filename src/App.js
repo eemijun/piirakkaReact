@@ -1,25 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import HomePage from './Pages/HomePage';
+import { useEffect, useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+	const [projects, setProjects] = useState([]);
+	const getData=()=>{
+		fetch('resumeData.json'
+		,{
+		  headers : { 
+			'Content-Type': 'application/json',
+			'Accept': 'application/json'
+		   }
+		}
+		)
+		  .then(function(response){
+			return response.json();
+		  })
+		  .then(function(myJson) {
+			setProjects(myJson.portfolio.projects)
+		  });
+	  }
+	  useEffect(()=>{
+		getData()
+	  },[])
+	return (
+		  <div className="App">
+			<header>
+			  <h1 className='App-Header'>Eemi Juntunen</h1>
+			  <p className='App-Par'>Welcome to my website showcasing various projects that I have been working on.</p>
+			</header>
+			<Router>
+			  <Route path="/" exact>
+				<HomePage projects={projects}></HomePage>
+			  </Route>
+			</Router>
+			<footer className='App-Footer'>
+			  © 2022 Eemi Juntunen
+			</footer>
+		  </div>
+		  );	
+	}
+
 
 export default App;
+
+
