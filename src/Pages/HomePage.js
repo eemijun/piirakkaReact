@@ -4,7 +4,9 @@ import ProjectList from '../Components/ProjectList';
 function HomePage({projects}){
 
         return (
-            <ProjectList projects={projects} ></ProjectList>
+            <><p className='App-Par'>Welcome to my website showcasing various projects that I have been working on.</p>
+
+            <ProjectList projects={projects} ></ProjectList></>
         );
     }
 
