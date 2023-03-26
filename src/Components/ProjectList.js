@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ProjectList.css';
+import Project from './Project'
 
 const projects =  [
       {
@@ -41,25 +42,12 @@ const ProjectList = () => {
     setSelectedProject(id);
   };
   return (
-    <div className="project-list-container">
-      <h1 className="project-list-title">Projects</h1>
-      <div className="project-list">
-        {projects.map((project) => (
-          <div
-            key={project.id}
-            className={`project ${selectedProject === project.id ? 'selected' : ''}`}
-            //onClick={() => handleProjectClick(project.id)}
-          >
-            <a href={project.url}>
-            <img src={project.image} alt={project.title}/>
-            </a>
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
+    <div >
+      <h2>Projects</h2>
+           {projects.map((project, i) => <Project project={project}
+                      key={i} />)}
           </div>
-        ))}
-      </div>
-    </div>
-  );
+      );
 };
 
 export default ProjectList;

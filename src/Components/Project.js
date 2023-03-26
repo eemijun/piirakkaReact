@@ -1,13 +1,13 @@
 import React from 'react';
 
 function Project({ project }) {
-	let projectImage = "images/" + project.image;
-
     return (
         <article>
-			<img alt={project.title} src={projectImage} />
-			<h3 className="major">{project.info}</h3>
-			<a href={project.url} className="special">{project.name}</a>
+			<h1>{project.title}</h1>
+			<h3 className="major">{project.description}</h3>
+			<a href={project.url}>
+            <img src={project.image} alt={project.title}/>
+            </a>
 		</article>
     );
 }
